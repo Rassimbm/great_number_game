@@ -13,9 +13,25 @@
     <form action="/guess" method="post" class="col-6 row justify-content-around p-3 mx-auto">
         <div class="form-group">
             <label for="guess_num" class="form-label">Take a guess!</label>
-            <input type="number" class="form-control-plaintext" name="guess_num">
+            <input type="text" class="form-control-plaintext" name="guess_num">
         </div>
         <input type="submit" value="Guess" class="btn btn-primary col-4 mb-3">
     </form>
+    {%if "guess_num" in session:%}
+        {%if session["guess_num"] == session["num"]%}
+            <div class="card bg-success align-items-center col-6 mb-6 mx-auto">
+                <h2>You got the Number!</h2>
+                <a href="/reset-game" class="btn bg-primary-subtle col-3 mb-2">Play again</a>
+            </div>
+        {%elif session["guess_num"] < session["num"]%}
+            <div class="card bg-warning text-center col-6 mb-6 mx-auto">
+                <h2>Try a higher Number!</h2>
+            </div>
+        {%else%}
+            <div class="card bg-warning text-center col-6 mb-6 mx-auto">
+                <h2>Try a lower Number!</h2>
+            </div>
+        {%endif%}
+    {%endif%}
 </body>
 </html>
