@@ -10,28 +10,31 @@
 <body>
     <h1 class="text-center font-monospace fw-semibold my-4 mx-auto">Welcome to the Great Number Game!!!</h1>
     <p class="text-center my-4 mx-auto">I am thinking of a number between 1 and 100</p>
-    <form action="/guess" method="post" class="col-6 row justify-content-around p-3 mx-auto">
-        <div class="form-group">
-            <label for="guess_num" class="form-label">Take a guess!</label>
-            <input type="text" class="form-control-plaintext" name="guess_num">
-        </div>
-        <input type="submit" value="Guess" class="btn btn-primary col-4 mb-3">
-    </form>
-    {%if "guess_num" in session:%}
+    <div class="container md">
+        {%if "guess_num" in session:%}
         {%if session["guess_num"] == session["num"]%}
-            <div class="card bg-success align-items-center col-6 mb-6 mx-auto">
+            <div class="card bg-success text-warning align-items-center col-6 p-4 mb-6 mx-auto">
                 <h2>You got the Number!</h2>
-                <a href="/reset-game" class="btn bg-primary-subtle col-3 mb-2">Play again</a>
+                <a href="/reset-game" class="btn bg-primary text-warning col-3 mb-2">Play again</a>
             </div>
         {%elif session["guess_num"] < session["num"]%}
-            <div class="card bg-warning text-center col-6 mb-6 mx-auto">
+            <div class="card bg-danger text-center text-warning col-6 p-4 mb-6 mx-auto">
                 <h2>Try a higher Number!</h2>
             </div>
         {%else%}
-            <div class="card bg-warning text-center col-6 mb-6 mx-auto">
+            <div class="card bg-danger text-center text-warning col-6 p-4 mb-6 mx-auto">
                 <h2>Try a lower Number!</h2>
             </div>
         {%endif%}
     {%endif%}
+    <form action="/guess" method="post" class="bg-dark text-warning text-center m-3 col-4 p-3 mx-auto rounded">
+        <div class="form-group col-md-4 mx-auto">
+            <label for="guess_num" class="form-label">Take a guess!</label>
+            <input type="text" class="form-control" id="guess_num" name="guess_num">
+        </div>
+        <input type="submit" value="Guess" class="btn bg-warning m-3 col-3 mx-auto">
+    </form>
+    
+    </div>
 </body>
 </html>
