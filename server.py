@@ -15,5 +15,10 @@ def guess():
     session["guess_num"] = int(request.form["guess_num"])
     return redirect("/")
 
+@app.route("/reset-game")
+def reset_game():
+    session.clear()
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(debug=True)
