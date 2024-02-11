@@ -6,20 +6,26 @@ app.secret_key = "8891techa0128"
 
 @app.route("/")
 def index():
-    if "num" and "guess_count" not in session:
+    if "num" and "count" not in session:
         session["num"] = random.randint(1,100)
-        session["guess_count"] = 0
-    
-    return render_template("index.html", guess_count=session["guess_count"])
+        session["count"] = 5
+    return render_template("index.html")
 
 @app.route("/guess", methods = ["POST"])
 def guess():
-    session["guess_count"] += 1
-    session["guess_num"] = int(request.form["guess_num"])
+    session["guess"] = int(request.form["guess_num"])
+    session["count"] -= 1
+    # if session["count"] == 0:
+    #     session.pop("count")
     return redirect("/")
 
 @app.route("/reset-game")
 def reset_game():
+    session.clear()
+    return redirect("/")
+
+@app.route("/play-again")
+def play_again():
     session.clear()
     return redirect("/")
 

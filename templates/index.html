@@ -10,15 +10,23 @@
 <body>
     <h1 class="text-center font-monospace fw-semibold my-4 mx-auto">Welcome to the Great Number Game!!!</h1>
     <p class="text-center my-4 mx-auto">I am thinking of a number between 1 and 100</p>
-    <p class="text-center my-4 mx-auto">{{guess_count}} Attempt(s)</p>
+    <p class="text-center tex-warning">{{session["count"]}} Attempt(s) left!</p>
     <div class="container md">
-        {%if "guess_num" in session:%}
-        {%if session["guess_num"] == session["num"]%}
+
+    {%if session["count"] == 0:%}
+        <div class="card bg-success text-warning align-items-center col-6 p-4 mb-6 mx-auto">
+            <h2>You lost!</h2>
+            <a href="/play-again" class="btn bg-primary text-warning col-3 mb-2">Play again</a>
+        </div>
+    {%endif%}
+
+    {%if "guess" in session:%}
+        {%if session["guess"] == session["num"]%}
             <div class="card bg-success text-warning align-items-center col-6 p-4 mb-6 mx-auto">
                 <h2>You got the Number!</h2>
                 <a href="/reset-game" class="btn bg-primary text-warning col-3 mb-2">Play again</a>
             </div>
-        {%elif session["guess_num"] < session["num"]%}
+        {%elif session["guess"] < session["num"]%}
             <div class="card bg-danger text-center text-warning col-6 p-4 mb-6 mx-auto">
                 <h2>Try a higher Number!</h2>
             </div>
@@ -28,6 +36,7 @@
             </div>
         {%endif%}
     {%endif%}
+
     <form action="/guess" method="post" class="bg-dark text-warning text-center m-3 col-4 p-3 mx-auto rounded">
         <div class="form-group col-md-4 mx-auto">
             <label for="guess_num" class="form-label">Take a guess!</label>
@@ -35,7 +44,6 @@
         </div>
         <input type="submit" value="Guess" class="btn bg-warning m-3 col-3 mx-auto">
     </form>
-    
     </div>
 </body>
 </html>

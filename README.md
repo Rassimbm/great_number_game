@@ -14,5 +14,3 @@ NINJA BONUS: Allow the user to keep guessing until they get it correct
 NINJA BONUS: Let the user know how many attempts they took before guessing the correct number
 
 SENSEI BONUS: Only allow the user to guess up to 5 times. If they don't guess it on their 5th attempt, display a "You Lose" message and allow them to try again.
-
-SENSEI BONUS: If they win, allow the user to submit their name. Have a link to a leaderboard page that shows winners' names and how many attempts they took to guess correctly.
